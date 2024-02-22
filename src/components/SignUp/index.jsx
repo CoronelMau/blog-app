@@ -36,8 +36,9 @@ export default function SignUp() {
     };
 
     fetch('http://localhost:8000/user/register', config)
-      .then((res) => res.json())
-      .then((res) => console.log(res))
+      .then((res) => {
+        if (res.status == 200) navigate('/registered');
+      })
       .catch((err) => console.error(err));
   };
 
