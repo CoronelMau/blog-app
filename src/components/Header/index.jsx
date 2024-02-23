@@ -1,11 +1,19 @@
-import { HeaderSection, Input, Title } from '../../styles/Header';
+import {
+  HeaderContainer,
+  HeaderSection,
+  Input,
+  ProfileImg,
+  Title,
+} from '../../styles/Header';
 
 export default function Header() {
   return (
     <HeaderSection>
-      <Title>Hello</Title>
-      <Input placeholder="Search" />
-      <img />
+      <HeaderContainer>
+        <Title>Hello</Title>
+        <Input placeholder="Search" />
+        <ProfileImg src="../../../user.png" />
+      </HeaderContainer>
     </HeaderSection>
   );
 }
