@@ -24,7 +24,7 @@ export default function SignUp() {
     const data = {
       username,
       email,
-      password,
+      password: password == repeatPwd && password,
     };
 
     const config = {

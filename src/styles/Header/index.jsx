@@ -3,11 +3,19 @@ import styled from 'styled-components';
 export const HeaderSection = styled.div`
   background-color: #31304d;
   color: #fff;
-  min-height: 6vh;
+  min-height: 7vh;
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: center;
+`;
+
+export const HeaderContainer = styled.div`
+  width: 80vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  /* border: 1px solid red; */
 `;
 
 export const Title = styled.h1`
@@ -21,4 +29,8 @@ export const Input = styled.input`
   padding-left: 2rem;
   border-radius: 1rem;
   width: 35%;
+`;
+
+export const ProfileImg = styled.img`
+  height: 2.5rem;
 `;

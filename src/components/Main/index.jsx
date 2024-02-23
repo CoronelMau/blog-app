@@ -1,20 +1,21 @@
 import Header from '../Header';
+import { MainSection, PostingSection, PostingInput } from '../../styles/Main';
+
 import {
-  MainSection,
-  PostsSection,
   Post,
+  PostContainer,
   PostInfo,
   PostContent,
   PostInteraction,
-  PostWrite,
-  PostInput,
-} from '../../styles/Main';
+  PostImg,
+  ButtonInteraction,
+} from '../../styles/Post';
 
 export default function MainPage() {
   const posts = [
     {
       id: 1,
-      user: 'Test',
+      user: 'Test Name',
       img: 'https://github.com/CoronelMau.png',
       text: 'This is a text',
     },
@@ -23,20 +24,24 @@ export default function MainPage() {
   return (
     <MainSection>
       <Header />
-      <PostsSection>
-        <PostWrite>
-          <PostInput></PostInput>
-        </PostWrite>
-        {posts.map((post) => {
-          return (
-            <Post key={post.id}>
+      <PostingSection>
+        <PostingInput placeholder="Write your thoughts"></PostingInput>
+      </PostingSection>
+      {posts.map((post) => {
+        return (
+          <Post key={post.id}>
+            <PostContainer>
               <PostInfo>{post.user}</PostInfo>
-              <PostContent></PostContent>
-              <PostInteraction></PostInteraction>
-            </Post>
-          );
-        })}
-      </PostsSection>
+              <PostContent>{post.text}</PostContent>
+              <PostImg></PostImg>
+              <PostInteraction>
+                <ButtonInteraction>Like</ButtonInteraction>
+                <ButtonInteraction>Comment</ButtonInteraction>
+              </PostInteraction>
+            </PostContainer>
+          </Post>
+        );
+      })}
     </MainSection>
   );
 }
