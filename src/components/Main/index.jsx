@@ -1,3 +1,5 @@
+import { useState } from 'react';
+
 import Header from '../Header';
 import { MainSection, PostingSection, PostingInput } from '../../styles/Main';
 
@@ -18,8 +20,11 @@ import {
   CommentText,
   Comments,
 } from '../../styles/Comments';
+import PostModal from '../PostModal';
 
 export default function MainPage() {
+  const [modal, setModal] = useState(false);
+
   const posts = [
     {
       id: 1,
@@ -37,11 +42,18 @@ export default function MainPage() {
     { id: 2, user: 'Name 2', text: 'Another comment' },
   ];
 
+  const toggleModal = (state) => {
+    setModal(state);
+  };
+
   return (
     <MainSection>
       <Header />
       <PostingSection>
-        <PostingInput placeholder="Write your thoughts"></PostingInput>
+        <PostingInput
+          placeholder="Write your thoughts"
+          onClick={() => toggleModal(true)}
+        ></PostingInput>
       </PostingSection>
       <Post>
         {posts.map((post) => {
@@ -69,6 +81,8 @@ export default function MainPage() {
           );
         })}
       </Post>
+
+      {modal && <PostModal closeModal={toggleModal} />}
     </MainSection>
   );
 }
