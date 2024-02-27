@@ -34,6 +34,7 @@ export const PostImg = styled.img`
   max-height: 100%;
   max-width: 100%;
   padding-bottom: 1rem;
+  border-radius: 2rem;
 `;
 
 export const PostInteraction = styled.div`
