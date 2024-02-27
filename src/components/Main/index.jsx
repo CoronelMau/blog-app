@@ -11,6 +11,14 @@ import {
   ButtonInteraction,
 } from '../../styles/Post';
 
+import {
+  CommentContainer,
+  CommentInfo,
+  CommentInput,
+  CommentText,
+  Comments,
+} from '../../styles/Comments';
+
 export default function MainPage() {
   const posts = [
     {
@@ -19,6 +27,14 @@ export default function MainPage() {
       img: 'https://github.com/CoronelMau.png',
       text: 'This is a text',
     },
+  ];
+  const comments = [
+    {
+      id: 1,
+      user: 'Name 1',
+      text: 'Comment test',
+    },
+    { id: 2, user: 'Name 2', text: 'Another comment' },
   ];
 
   return (
@@ -33,11 +49,22 @@ export default function MainPage() {
             <PostContainer>
               <PostInfo>{post.user}</PostInfo>
               <PostContent>{post.text}</PostContent>
-              <PostImg></PostImg>
+              <PostImg src={post.img} />
               <PostInteraction>
                 <ButtonInteraction>Like</ButtonInteraction>
                 <ButtonInteraction>Comment</ButtonInteraction>
               </PostInteraction>
+              <Comments>
+                {comments.map((comment) => {
+                  return (
+                    <CommentContainer key={comment.id}>
+                      <CommentInfo>{comment.user}</CommentInfo>
+                      <CommentText>{comment.text}</CommentText>
+                    </CommentContainer>
+                  );
+                })}
+              </Comments>
+              <CommentInput placeholder="Comment" />
             </PostContainer>
           </Post>
         );
