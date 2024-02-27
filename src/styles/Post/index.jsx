@@ -1,19 +1,22 @@
 import styled from 'styled-components';
 
 export const Post = styled.div`
-  background-color: #31304d;
-  color: #fff;
   width: 40vw;
-  min-height: 10vw;
+  gap: 2rem;
+  color: #fff;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-radius: 0.5rem;
 `;
 
 export const PostContainer = styled.div`
+  min-height: 10vw;
+  background-color: #31304d;
   width: 90%;
-  height: 90%;
+  width: 90%;
+  padding: 1% 5%;
+  border-radius: 0.5rem;
   display: flex;
   flex-direction: column;
 `;
