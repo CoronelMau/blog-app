@@ -14,6 +14,8 @@ export const Post = styled.div`
 export const PostContainer = styled.div`
   width: 90%;
   height: 90%;
+  display: flex;
+  flex-direction: column;
 `;
 
 export const PostInfo = styled.div`
@@ -21,11 +23,15 @@ export const PostInfo = styled.div`
 `;
 
 export const PostContent = styled.div`
-  font-size: 2rem;
+  font-size: 1.5rem;
   padding-top: 2rem;
   padding-bottom: 2rem;
 `;
-export const PostImg = styled.div``;
+export const PostImg = styled.img`
+  max-height: 100%;
+  max-width: 100%;
+  padding-bottom: 1rem;
+`;
 
 export const PostInteraction = styled.div`
   display: flex;
@@ -33,6 +39,7 @@ export const PostInteraction = styled.div`
   justify-content: space-evenly;
   height: 2rem;
   border-top: 1px solid #f0ece5;
+  border-bottom: 1px solid #f0ece5;
   align-items: center;
   margin-bottom: 0.5rem;
 `;

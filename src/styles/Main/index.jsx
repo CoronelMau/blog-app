@@ -2,9 +2,8 @@ import styled from 'styled-components';
 
 export const MainSection = styled.div`
   background-color: #f0ece5;
-  min-height: 100vh;
+  min-height: 100lvh;
   width: 100vw;
-  scroll-behavior: auto;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -19,7 +18,6 @@ export const PostingSection = styled.div`
   height: 10ch;
   width: 40vw;
   background-color: #31304d;
-  /* border: 1px solid red; */
   margin: 2vh;
   border-radius: 0.5rem;
 `;
