@@ -43,10 +43,10 @@ export default function MainPage() {
       <PostingSection>
         <PostingInput placeholder="Write your thoughts"></PostingInput>
       </PostingSection>
-      {posts.map((post) => {
-        return (
-          <Post key={post.id}>
-            <PostContainer>
+      <Post>
+        {posts.map((post) => {
+          return (
+            <PostContainer key={post.id}>
               <PostInfo>{post.user}</PostInfo>
               <PostContent>{post.text}</PostContent>
               <PostImg src={post.img} />
@@ -66,9 +66,9 @@ export default function MainPage() {
               </Comments>
               <CommentInput placeholder="Comment" />
             </PostContainer>
-          </Post>
-        );
-      })}
+          );
+        })}
+      </Post>
     </MainSection>
   );
 }
