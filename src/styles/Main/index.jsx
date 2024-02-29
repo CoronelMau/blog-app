@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const MainSection = styled.div`
   background-color: #f0ece5;
   min-height: 100lvh;
-  width: 100vw;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;

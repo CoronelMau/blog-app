@@ -57,7 +57,8 @@ export const TextArea = styled.textarea`
 
 export const Button = styled.button`
   width: 36vw;
-  font-size: 1rem;
+  font-size: 1.2rem;
   padding: 0.4rem;
   border-radius: 0.5rem;
+  cursor: pointer;
 `;

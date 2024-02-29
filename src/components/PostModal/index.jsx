@@ -8,7 +8,6 @@ import {
   Title,
 } from '../../styles/PostModal';
 
-// eslint-disable-next-line react/prop-types
 export default function PostModal({ closeModal }) {
   return (
     <Modal>

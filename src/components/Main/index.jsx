@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 import Header from '../Header';
 import { MainSection, PostingSection, PostingInput } from '../../styles/Main';
@@ -24,15 +24,24 @@ import PostModal from '../PostModal';
 
 export default function MainPage() {
   const [modal, setModal] = useState(false);
+  const [posts, setPosts] = useState([]);
 
-  const posts = [
-    {
-      id: 1,
-      user: 'Test Name',
-      img: 'https://github.com/CoronelMau.png',
-      text: 'This is a text',
-    },
-  ];
+  useEffect(() => {
+    const jwt = JSON.parse(localStorage.getItem('token'));
+
+    const config = {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+      },
+    };
+
+    fetch('http://localhost:8000/user/follow-posts', config)
+      .then((res) => res.json())
+      .then((res) => setPosts(res))
+      .catch((err) => console.error(err));
+  }, []);
+
   const comments = [
     {
       id: 1,
@@ -58,7 +67,7 @@ export default function MainPage() {
       <Post>
         {posts.map((post) => {
           return (
-            <PostContainer key={post.id}>
+            <PostContainer key={post.postId}>
               <PostInfo>{post.user}</PostInfo>
               <PostContent>{post.text}</PostContent>
               <PostImg src={post.img} />
