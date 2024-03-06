@@ -1,10 +1,10 @@
-/* eslint-disable react/prop-types */
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 
 import LogIn from './components/LogIn';
 import SignUp from './components/SignUp';
 import MainPage from './components/Main';
 import UserRegistered from './components/UserRegistered';
+import SearchProfiles from './components/SearchProfiles';
 
 function App() {
   const isAuthenticated = () => {
@@ -32,6 +32,7 @@ function App() {
             </ProtectedRoute>
           }
         />
+        <Route path="/search" element={<SearchProfiles />} />
       </Routes>
     </BrowserRouter>
   );

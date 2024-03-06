@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import io from 'socket.io-client';
 
 import Header from '../Header';
 import { MainSection, PostingSection, PostingInput } from '../../styles/Main';
@@ -24,26 +25,41 @@ import PostModal from '../PostModal';
 
 export default function MainPage() {
   const [modal, setModal] = useState(false);
+  const [posts, setPosts] = useState([]);
+  const [comments, setComments] = useState([]);
+  const [socket, setSocket] = useState(null);
 
-  const posts = [
-    {
-      id: 1,
-      user: 'Test Name',
-      img: 'https://github.com/CoronelMau.png',
-      text: 'This is a text',
-    },
-  ];
-  const comments = [
-    {
-      id: 1,
-      user: 'Name 1',
-      text: 'Comment test',
-    },
-    { id: 2, user: 'Name 2', text: 'Another comment' },
-  ];
+  useEffect(() => {
+    const newSocket = io('http://localhost:8000', { forceNew: true });
+    setSocket(newSocket);
+
+    newSocket.on('likesCount', (dataRecived) => {
+      console.log(dataRecived);
+    });
+
+    const jwt = JSON.parse(localStorage.getItem('token'));
+
+    const config = {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer ${jwt}`,
+      },
+    };
+
+    fetch('http://localhost:8000/user/follow-posts', config)
+      .then((res) => res.json())
+      .then((res) => setPosts(res))
+      .catch((err) => console.error(err));
+  }, []);
 
   const toggleModal = (state) => {
     setModal(state);
+  };
+
+  const handleLike = (post_id) => {
+    const jwt = JSON.parse(localStorage.getItem('token'));
+    const data = { jwt, post_id };
+    socket.emit('like', data);
   };
 
   return (
@@ -58,12 +74,14 @@ export default function MainPage() {
       <Post>
         {posts.map((post) => {
           return (
-            <PostContainer key={post.id}>
+            <PostContainer key={post.postId}>
               <PostInfo>{post.user}</PostInfo>
               <PostContent>{post.text}</PostContent>
               <PostImg src={post.img} />
               <PostInteraction>
-                <ButtonInteraction>Like</ButtonInteraction>
+                <ButtonInteraction onClick={() => handleLike(post.postId)}>
+                  Like
+                </ButtonInteraction>
                 <ButtonInteraction>Comment</ButtonInteraction>
               </PostInteraction>
               <Comments>

@@ -46,6 +46,7 @@ export const Button = styled.button`
   border-radius: 1rem;
   background-color: #31304d;
   color: #f0ece5;
+  cursor: pointer;
 `;
 
 export const RightSection = styled.div`
