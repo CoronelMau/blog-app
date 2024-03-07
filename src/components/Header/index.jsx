@@ -26,7 +26,10 @@ export default function Header({ handleInfo }) {
       };
       fetch('http://localhost:8000/user/search-profile', config)
         .then((res) => res.json())
-        .then((res) => handleInfo(res))
+        .then((res) => {
+          handleInfo(res);
+          e.target.value = '';
+        })
         .catch((err) => console.error(err));
     }
   };
