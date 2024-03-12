@@ -1,4 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+
 import Header from '../Header';
 import {
   FollowButton,
@@ -11,6 +13,23 @@ import {
 
 export default function SearchProfiles() {
   const [profiles, setProfiles] = useState([]);
+  const user = useParams();
+
+  useEffect(() => {
+    const config = {
+      method: 'SEARCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    };
+    fetch(`http://localhost:8000/user/search-profile/${user.query}`, config)
+      .then((res) => res.json())
+      .then((res) => {
+        console.log(res);
+        setProfiles(res.userInfo);
+      })
+      .catch((err) => console.error(err));
+  });
 
   const searchInfo = (info) => {
     setProfiles(info.userInfo);
@@ -19,8 +38,6 @@ export default function SearchProfiles() {
   const handleFollow = (e, following_id) => {
     e.stopPropagation();
     const jwt = JSON.parse(localStorage.getItem('token'));
-
-    console.log(following_id);
 
     const data = {
       following_id,
