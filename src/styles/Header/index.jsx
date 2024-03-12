@@ -20,6 +20,7 @@ export const HeaderContainer = styled.div`
 
 export const Title = styled.h1`
   font-size: 1.75rem;
+  cursor: pointer;
 `;
 
 export const Input = styled.input`

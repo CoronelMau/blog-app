@@ -16,7 +16,8 @@ export default function SearchProfiles() {
     setProfiles(info.userInfo);
   };
 
-  const handleFollow = (following_id) => {
+  const handleFollow = (e, following_id) => {
+    e.stopPropagation();
     const jwt = JSON.parse(localStorage.getItem('token'));
 
     console.log(following_id);
@@ -46,12 +47,15 @@ export default function SearchProfiles() {
       <ProfilesSection>
         {profiles.map((profile) => {
           return (
-            <Profile key={profile.id}>
+            <Profile
+              key={profile.id}
+              onClick={() => console.log('Clicking test')}
+            >
               <ImgProfile
                 src={profile.url ? profile.url : '../../../user.png'}
               />
               <UserName>{profile.user}</UserName>
-              <FollowButton onClick={() => handleFollow(profile.id)}>
+              <FollowButton onClick={(e) => handleFollow(e, profile.id)}>
                 Follow
               </FollowButton>
             </Profile>

@@ -14,7 +14,6 @@ export default function Header({ handleInfo }) {
   const handleSearch = (e) => {
     if (e.keyCode === 13 && e.target.value != '') {
       navigate('/search');
-
       const config = {
         method: 'SEARCH',
         headers: {
@@ -37,7 +36,7 @@ export default function Header({ handleInfo }) {
   return (
     <HeaderSection>
       <HeaderContainer>
-        <Title>Hello</Title>
+        <Title onClick={() => navigate('/main')}>Hello</Title>
         <Input placeholder="Search" onKeyUp={handleSearch} />
         <ProfileImg src="../../../user.png" />
       </HeaderContainer>
