@@ -26,6 +26,7 @@ export const Profile = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 1rem;
+  cursor: pointer;
 `;
 
 export const ImgProfile = styled.img`
