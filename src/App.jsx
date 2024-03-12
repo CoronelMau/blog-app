@@ -33,7 +33,7 @@ function App() {
             </ProtectedRoute>
           }
         />
-        <Route path="/search" element={<SearchProfiles />} />
+        <Route path="/search/:query" element={<SearchProfiles />} />
         <Route path="/:id" element={<Profile />} />
       </Routes>
     </BrowserRouter>
