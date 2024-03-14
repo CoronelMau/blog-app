@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { io } from 'socket.io-client';
+import { useParams } from 'react-router-dom';
 
 import {
   FollowButton,
@@ -31,6 +32,9 @@ import {
 } from '../../styles/Comments';
 
 export default function Profile() {
+  const userId = useParams();
+  console.log(userId);
+
   const [user, setUser] = useState('');
   const [posts, setPosts] = useState([]);
   const [comments, setComments] = useState([]);
@@ -44,16 +48,16 @@ export default function Profile() {
       console.log(dataRecived);
     });
 
-    fetch(`http://localhost:8000/user/profile/${1}`)
+    fetch(`http://localhost:8000/user/profile/${userId.id}`)
       .then((res) => res.json())
       .then((res) => setUser(res))
       .catch((err) => console.error(err));
 
-    fetch(`http://localhost:8000/user/posts/${1}`)
+    fetch(`http://localhost:8000/user/posts/${userId.id}`)
       .then((res) => res.json())
       .then((res) => setPosts(res.userPosts))
       .catch((err) => console.error(err));
-  }, []);
+  }, [userId]);
 
   const handleLike = (post_id) => {
     const jwt = JSON.parse(localStorage.getItem('token'));

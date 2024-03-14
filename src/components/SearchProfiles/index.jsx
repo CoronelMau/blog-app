@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 
 import Header from '../Header';
 import {
@@ -14,6 +14,7 @@ import {
 export default function SearchProfiles() {
   const [profiles, setProfiles] = useState([]);
   const user = useParams();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const config = {
@@ -66,7 +67,7 @@ export default function SearchProfiles() {
           return (
             <Profile
               key={profile.id}
-              onClick={() => console.log('Clicking test')}
+              onClick={() => navigate(`/profile/${profile.id}`)}
             >
               <ImgProfile
                 src={profile.url ? profile.url : '../../../user.png'}

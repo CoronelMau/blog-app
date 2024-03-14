@@ -34,7 +34,7 @@ function App() {
           }
         />
         <Route path="/search/:query" element={<SearchProfiles />} />
-        <Route path="/:id" element={<Profile />} />
+        <Route path="profile/:id" element={<Profile />} />
       </Routes>
     </BrowserRouter>
   );

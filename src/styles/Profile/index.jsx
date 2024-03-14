@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const ProfilePage = styled.div`
   background-color: #f0ece5;
-  min-height: 100lvh;
+  min-height: 100vh;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -22,7 +22,7 @@ export const UserData = styled.aside`
   align-items: center;
   justify-content: space-between;
   height: 50vh;
-  padding-bottom: 10rem;
+  padding-bottom: 5rem;
 `;
 
 export const UserImg = styled.img`
