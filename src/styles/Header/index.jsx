@@ -34,4 +34,5 @@ export const Input = styled.input`
 
 export const ProfileImg = styled.img`
   height: 2.5rem;
+  cursor: pointer;
 `;
