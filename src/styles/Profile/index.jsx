@@ -11,18 +11,17 @@ export const ProfilePage = styled.div`
 
 export const ProfileSection = styled.div`
   display: flex;
-  align-items: center;
   justify-content: space-between;
   width: 60%;
+  min-height: 100%;
 `;
 
 export const UserData = styled.aside`
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  height: 50vh;
-  padding-bottom: 5rem;
+  justify-content: space-evenly;
+  height: 60vh;
 `;
 
 export const UserImg = styled.img`
@@ -48,18 +47,24 @@ export const FollowButton = styled.button`
 export const MainContent = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  align-items: flex-start;
+  height: 10%;
 `;
 
 export const FollowSection = styled.div`
   display: flex;
-  height: 5rem;
+  height: 3rem;
   padding-top: 3rem;
   width: 100%;
   justify-content: space-evenly;
+  border-bottom: 1px solid #31304d;
+  margin-bottom: 2rem;
 `;
 
 export const FollowText = styled.p`
   font-size: 1.25rem;
+`;
+
+export const PostSection = styled.div`
+  flex: 1;
 `;

@@ -11,6 +11,7 @@ import {
   UserData,
   UserImg,
   UserName,
+  PostSection,
 } from '../../styles/Profile';
 import Header from '../Header';
 import Posts from '../Post';
@@ -42,12 +43,15 @@ export default function Profile() {
           <UserName>{user.username}</UserName>
           <FollowButton>Follow</FollowButton>
         </UserData>
+
         <MainContent>
           <FollowSection>
             <FollowText>Count follows</FollowText>
             <FollowText>Count followings</FollowText>
           </FollowSection>
-          <Posts sendData={posts} />
+          <PostSection>
+            <Posts sendData={posts} />
+          </PostSection>
         </MainContent>
       </ProfileSection>
     </ProfilePage>

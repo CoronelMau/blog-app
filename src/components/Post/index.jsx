@@ -24,7 +24,6 @@ export default function Posts({ sendData }) {
 
   useEffect(() => {
     setPosts(sendData);
-    console.log(sendData);
 
     const newSocket = io('http://localhost:8000', { forceNew: true });
     setSocket(newSocket);
@@ -45,7 +44,7 @@ export default function Posts({ sendData }) {
       {posts.map((post) => {
         return (
           <PostContainer key={post.id}>
-            <PostInfo>{post.user}</PostInfo>
+            <PostInfo>{post.user || 'You'}</PostInfo>
             <PostContent>{post.content}</PostContent>
             <PostImg src={post.img} />
             <PostInteraction>
