@@ -25,10 +25,7 @@ export default function SearchProfiles() {
     };
     fetch(`http://localhost:8000/user/search-profile/${user.query}`, config)
       .then((res) => res.json())
-      .then((res) => {
-        console.log(res);
-        setProfiles(res.userInfo);
-      })
+      .then((res) => setProfiles(res.userInfo))
       .catch((err) => console.error(err));
   });
 

@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { io } from 'socket.io-client';
 import { useParams } from 'react-router-dom';
 
 import {
@@ -18,7 +17,6 @@ import Posts from '../Post';
 
 export default function Profile() {
   const userId = useParams();
-  console.log(userId);
 
   const [user, setUser] = useState('');
   const [posts, setPosts] = useState([]);

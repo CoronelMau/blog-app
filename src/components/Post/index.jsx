@@ -49,8 +49,8 @@ export default function Posts({ sendData }) {
             <PostContent>{post.content}</PostContent>
             <PostImg src={post.img} />
             <PostInteraction>
-              <ButtonInteraction onClick={() => handleLike(post.postId)}>
-                Like
+              <ButtonInteraction onClick={() => handleLike(post.id)}>
+                {post.likes} likes
               </ButtonInteraction>
               <ButtonInteraction>Comment</ButtonInteraction>
             </PostInteraction>
