@@ -62,3 +62,21 @@ export const Button = styled.button`
   border-radius: 0.5rem;
   cursor: pointer;
 `;
+
+export const ImageArea = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 100%;
+  padding: 0.5rem;
+`;
+
+export const ImageTitle = styled.p`
+  font-size: 1.5rem;
+`;
+
+export const ImageInput = styled.input`
+  font-size: 1.2rem;
+  border-radius: 0.5rem;
+  cursor: pointer;
+`;

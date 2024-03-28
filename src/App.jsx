@@ -6,6 +6,7 @@ import MainPage from './components/Main';
 import UserRegistered from './components/UserRegistered';
 import SearchProfiles from './components/SearchProfiles';
 import Profile from './components/Profile';
+import Settings from './components/Settings';
 
 function App() {
   const isAuthenticated = () => {
@@ -34,7 +35,8 @@ function App() {
           }
         />
         <Route path="/search/:query" element={<SearchProfiles />} />
-        <Route path="profile/:id" element={<Profile />} />
+        <Route path="/profile/:id" element={<Profile />} />
+        <Route path="/settings" element={<Settings />} />
       </Routes>
     </BrowserRouter>
   );

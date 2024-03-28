@@ -3,6 +3,9 @@ import { useState } from 'react';
 import {
   Button,
   CloseModal,
+  ImageArea,
+  ImageInput,
+  ImageTitle,
   Modal,
   ModalHeader,
   PostArea,
@@ -10,34 +13,48 @@ import {
   Title,
 } from '../../styles/PostModal';
 
-export default function PostModal({ closeModal }) {
-  const [post, setPost] = useState();
+export default function PostModal({ closeModal, updatePosts }) {
+  const [post, setPost] = useState('');
+  const [image, setImage] = useState(null);
 
   const handlePost = (e) => {
     e.preventDefault;
 
-    const jwt = JSON.parse(localStorage.getItem('token'));
+    const formData = new FormData();
+    formData.append('file', image);
+    formData.append('upload_preset', 'iuccxiw3');
+    formData.append('api_key', '862423219721751');
 
-    const data = {
-      text: post,
-    };
-
-    const config = {
+    fetch('https://api.cloudinary.com/v1_1/dihivxkel/image/upload', {
       method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        Authorization: `Bearer ${jwt}`,
-      },
-      body: JSON.stringify(data),
-    };
-
-    fetch('http://localhost:8000/user/post', config)
+      body: formData,
+    })
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
-        closeModal(false);
-      })
-      .catch((err) => console.error(err));
+        const jwt = JSON.parse(localStorage.getItem('token'));
+
+        const data = {
+          text: post,
+          url: res.secure_url,
+        };
+
+        const config = {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            Authorization: `Bearer ${jwt}`,
+          },
+          body: JSON.stringify(data),
+        };
+
+        fetch('http://localhost:8000/user/post', config)
+          .then((res) => res.json())
+          .then((res) => {
+            updatePosts(res);
+            closeModal(false);
+          })
+          .catch((err) => console.error(err));
+      });
   };
 
   return (
@@ -52,7 +69,18 @@ export default function PostModal({ closeModal }) {
           onChange={(e) => {
             setPost(e.target.value);
           }}
+          autoFocus
+          onKeyUp={(e) => {
+            e.keyCode === 27 && closeModal(false);
+          }}
         />
+        <ImageArea>
+          <ImageTitle>Image: </ImageTitle>
+          <ImageInput
+            type="file"
+            onChange={(e) => setImage(e.target.files[0])}
+          />
+        </ImageArea>
         <Button onClick={handlePost}>Post</Button>
       </PostArea>
     </Modal>

@@ -14,6 +14,7 @@ export default function Menu({ userId }) {
       <MenuOption onClick={() => navigate(`/profile/${userId}`)}>
         Profile
       </MenuOption>
+      <MenuOption onClick={() => navigate('/settings')}>Settings</MenuOption>
       <MenuOption onClick={closeSession}>Close Session</MenuOption>
     </MenuContainer>
   );

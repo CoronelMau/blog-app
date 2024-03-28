@@ -3,7 +3,7 @@ import styled from 'styled-components';
 export const MenuContainer = styled.div`
   background-color: #31304d;
   width: 150px;
-  height: 70px;
+  height: 100px;
   color: #fff;
   position: fixed;
   right: 10%;
