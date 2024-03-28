@@ -46,8 +46,8 @@ export default function Profile() {
 
         <MainContent>
           <FollowSection>
-            <FollowText>Count follows</FollowText>
-            <FollowText>Count followings</FollowText>
+            <FollowText>{user.followersCount} Followers</FollowText>
+            <FollowText>{user.followingCount} Followings</FollowText>
           </FollowSection>
           <PostSection>
             <Posts sendData={posts} />

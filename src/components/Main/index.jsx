@@ -29,6 +29,12 @@ export default function MainPage() {
     setModal(state);
   };
 
+  const updatePosts = (newPost) => {
+    const updatedPosts = [...posts];
+    updatedPosts.unshift(newPost);
+    setPosts(updatedPosts);
+  };
+
   return (
     <MainSection>
       <Header />
@@ -39,7 +45,9 @@ export default function MainPage() {
         ></PostingInput>
       </PostingSection>
       <Posts sendData={posts} />
-      {modal && <PostModal closeModal={toggleModal} />}
+      {modal && (
+        <PostModal closeModal={toggleModal} updatePosts={updatePosts} />
+      )}
     </MainSection>
   );
 }

@@ -15,7 +15,7 @@ export default function Header() {
   const navigate = useNavigate();
 
   const [openMenu, setOpenMenu] = useState(false);
-  const [userId, setUserId] = useState();
+  const [user, setUser] = useState({});
 
   useEffect(() => {
     const jwt = JSON.parse(localStorage.getItem('token'));
@@ -30,9 +30,12 @@ export default function Header() {
 
     fetch('http://localhost:8000/user/user-data', config)
       .then((res) => res.json())
-      .then((res) => setUserId(res.id))
+      .then((res) => {
+        console.log(res);
+        setUser(res);
+      })
       .catch((err) => console.error(err));
-  });
+  }, []);
 
   const handleSearch = (e) => {
     if (e.keyCode === 13 && e.target.value.trim() !== '') {
@@ -46,12 +49,13 @@ export default function Header() {
       <HeaderContainer>
         <Title onClick={() => navigate('/main')}>Hello</Title>
         <Input placeholder="Search" onKeyUp={handleSearch} />
+
         <ProfileImg
-          src="../../../user.png"
+          src={user.url ? user.url : '../../../user.png'}
           onClick={() => setOpenMenu(!openMenu)}
         />
       </HeaderContainer>
-      {openMenu && <Menu userId={userId} />}
+      {openMenu && <Menu userId={user.id} />}
     </HeaderSection>
   );
 }

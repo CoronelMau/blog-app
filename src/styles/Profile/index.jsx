@@ -26,6 +26,8 @@ export const UserData = styled.aside`
 
 export const UserImg = styled.img`
   height: 15rem;
+  width: 15rem;
+  border-radius: 8rem;
 `;
 
 export const UserName = styled.h1`
