@@ -13,6 +13,7 @@ import {
   Title,
 } from '../../styles/PostModal';
 
+//testing
 export default function PostModal({ closeModal, updatePosts }) {
   const [post, setPost] = useState('');
   const [image, setImage] = useState(null);
