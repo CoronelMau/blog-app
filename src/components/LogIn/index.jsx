@@ -56,7 +56,6 @@ export default function LogIn() {
             onChange={(e) => {
               setEmail(e.target.value);
             }}
-            value={email}
           />
           <Input
             type="password"
@@ -64,7 +63,6 @@ export default function LogIn() {
             onChange={(e) => {
               setPassword(e.target.value);
             }}
-            value={password}
           />
           <Button onClick={handleSubmit}>Log In</Button>
         </Form>
