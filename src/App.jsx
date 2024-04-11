@@ -1,4 +1,9 @@
-import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from 'react-router-dom';
 
 import LogIn from './components/LogIn';
 import SignUp from './components/SignUp';
@@ -21,7 +26,7 @@ function App() {
   };
 
   return (
-    <BrowserRouter>
+    <Router>
       <Routes>
         <Route path="/" element={<LogIn />} />
         <Route path="/sign-up" element={<SignUp />} />
@@ -38,7 +43,7 @@ function App() {
         <Route path="/profile/:id" element={<Profile />} />
         <Route path="/settings" element={<Settings />} />
       </Routes>
-    </BrowserRouter>
+    </Router>
   );
 }
 
