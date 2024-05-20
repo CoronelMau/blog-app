@@ -21,7 +21,10 @@ export default function MainPage() {
 
     fetch('http://localhost:8000/user/follow-posts', config)
       .then((res) => res.json())
-      .then((res) => setPosts(res.finalPosts))
+      .then((res) => {
+        setPosts(res.finalPosts);
+        console.log(res);
+      })
       .catch((err) => console.error(err));
   }, []);
 
