@@ -13,7 +13,7 @@ import SearchProfiles from './components/SearchProfiles';
 import Profile from './components/Profile';
 import Settings from './components/Settings';
 
-function App() {
+export function AppRoutes() {
   const isAuthenticated = () => {
     const jwt = localStorage.getItem('token');
     return !!jwt;
@@ -26,25 +26,29 @@ function App() {
   };
 
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<LogIn />} />
-        <Route path="/sign-up" element={<SignUp />} />
-        <Route path="/registered" element={<UserRegistered />} />
-        <Route
-          path="/main"
-          element={
-            <ProtectedRoute>
-              <MainPage />
-            </ProtectedRoute>
-          }
-        />
-        <Route path="/search/:query" element={<SearchProfiles />} />
-        <Route path="/profile/:id" element={<Profile />} />
-        <Route path="/settings" element={<Settings />} />
-      </Routes>
-    </Router>
+    <Routes>
+      <Route path="/" element={<LogIn />} />
+      <Route path="/sign-up" element={<SignUp />} />
+      <Route path="/registered" element={<UserRegistered />} />
+      <Route
+        path="/main"
+        element={
+          <ProtectedRoute>
+            <MainPage />
+          </ProtectedRoute>
+        }
+      />
+      <Route path="/search/:query" element={<SearchProfiles />} />
+      <Route path="/profile/:id" element={<Profile />} />
+      <Route path="/settings" element={<Settings />} />
+    </Routes>
   );
 }
+
+const App = () => {
+  <Router>
+    <AppRoutes />
+  </Router>;
+};
 
 export default App;
