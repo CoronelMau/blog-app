@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">38.88% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>0/18</span>
+                <span class='fraction'>7/18</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>0/2</span>
+                <span class='fraction'>1/2</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">25% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>0/8</span>
+                <span class='fraction'>2/8</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">0% </span>
+                <span class="strong">38.88% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>0/18</span>
+                <span class='fraction'>7/18</span>
             </div>
         
             
@@ -127,39 +127,39 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -182,12 +182,12 @@ import Posts from '../Post';
 import { MainSection, PostingSection, PostingInput } from '../../styles/Main';
 import PostModal from '../PostModal';
 &nbsp;
-export default function <span class="fstat-no" title="function not covered" >MainPage(</span>) {
-  const [modal, setModal] = <span class="cstat-no" title="statement not covered" >useState(false);</span>
-  const [posts, setPosts] = <span class="cstat-no" title="statement not covered" >useState([]);</span>
+export default function MainPage() {
+  const [modal, setModal] = useState(false);
+  const [posts, setPosts] = useState([]);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  useEffect(<span class="fstat-no" title="function not covered" >()</span> =&gt; {</span>
-    const jwt = <span class="cstat-no" title="statement not covered" >JSON.parse(localStorage.getItem('token'));</span>
+  useEffect(() =&gt; {
+    const jwt = JSON.parse(localStorage.getItem('token'));
 &nbsp;
     const config = <span class="cstat-no" title="statement not covered" >{</span>
       method: 'GET',
@@ -205,17 +205,17 @@ export default function <span class="fstat-no" title="function not covered" >Mai
       .catch(<span class="fstat-no" title="function not covered" >(e</span>rr) =&gt; <span class="cstat-no" title="statement not covered" >console.error(err))</span>;
   }, []);
 &nbsp;
-  const toggleModal = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(s</span>tate) =&gt; {</span>
+  const toggleModal = <span class="fstat-no" title="function not covered" >(s</span>tate) =&gt; {
 <span class="cstat-no" title="statement not covered" >    setModal(state);</span>
   };
 &nbsp;
-  const updatePosts = <span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >(n</span>ewPost) =&gt; {</span>
+  const updatePosts = <span class="fstat-no" title="function not covered" >(n</span>ewPost) =&gt; {
     const updatedPosts = <span class="cstat-no" title="statement not covered" >[...posts];</span>
 <span class="cstat-no" title="statement not covered" >    updatedPosts.unshift(newPost);</span>
 <span class="cstat-no" title="statement not covered" >    setPosts(updatedPosts);</span>
   };
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return (</span>
+  return (
     &lt;MainSection&gt;
       &lt;Header /&gt;
       &lt;PostingSection&gt;
@@ -226,7 +226,7 @@ export default function <span class="fstat-no" title="function not covered" >Mai
       &lt;/PostingSection&gt;
       &lt;Posts sendData={posts} /&gt;
       {modal &amp;&amp; (
-        &lt;PostModal closeModal={toggleModal} updatePosts={updatePosts} /&gt;
+<span class="branch-1 cbranch-no" title="branch not covered" >        &lt;PostModal closeModal={toggleModal} updatePosts={updatePosts} /&gt;</span>
       )}
     &lt;/MainSection&gt;
   );
@@ -238,7 +238,7 @@ export default function <span class="fstat-no" title="function not covered" >Mai
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-05-21T17:55:50.794Z
+                at 2024-05-23T18:58:29.516Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>
