@@ -45,10 +45,12 @@ export function AppRoutes() {
   );
 }
 
-const App = () => {
-  <Router>
-    <AppRoutes />
-  </Router>;
-};
+function App() {
+  return (
+    <Router>
+      <AppRoutes />
+    </Router>
+  );
+}
 
 export default App;
