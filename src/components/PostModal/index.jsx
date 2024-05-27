@@ -18,44 +18,62 @@ export default function PostModal({ closeModal, updatePosts }) {
   const [post, setPost] = useState('');
   const [image, setImage] = useState(null);
 
-  const handlePost = (e) => {
-    e.preventDefault;
+  const handlePost = async (e) => {
+    e.preventDefault();
 
-    const formData = new FormData();
-    formData.append('file', image);
-    formData.append('upload_preset', 'iuccxiw3');
-    formData.append('api_key', '862423219721751');
+    try {
+      let imageUrl = null;
 
-    fetch('https://api.cloudinary.com/v1_1/dihivxkel/image/upload', {
-      method: 'POST',
-      body: formData,
-    })
-      .then((res) => res.json())
-      .then((res) => {
-        const jwt = JSON.parse(localStorage.getItem('token'));
+      if (image) {
+        const formData = new FormData();
+        formData.append('file', image);
+        formData.append('upload_preset', 'iuccxiw3');
+        formData.append('api_key', '862423219721751');
 
-        const data = {
-          text: post,
-          url: res.secure_url,
-        };
+        const cloudinaryRes = await fetch(
+          'https://api.cloudinary.com/v1_1/dihivxkel/image/upload',
+          {
+            method: 'POST',
+            body: formData,
+          }
+        );
 
-        const config = {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            Authorization: `Bearer ${jwt}`,
-          },
-          body: JSON.stringify(data),
-        };
+        const cloudinaryData = await cloudinaryRes.json();
+        if (!cloudinaryRes.ok) {
+          throw new Error(cloudinaryData.error.message);
+        }
 
-        fetch('http://localhost:8000/user/post', config)
-          .then((res) => res.json())
-          .then((res) => {
-            updatePosts(res);
-            closeModal(false);
-          })
-          .catch((err) => console.error(err));
-      });
+        imageUrl = cloudinaryData.secure_url;
+      }
+
+      const jwt = JSON.parse(localStorage.getItem('token'));
+
+      const data = {
+        text: post,
+        url: imageUrl,
+      };
+
+      const config = {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${jwt}`,
+        },
+        body: JSON.stringify(data),
+      };
+
+      const postRes = await fetch('http://localhost:8000/user/post', config);
+      const postData = await postRes.json();
+
+      if (!postRes.ok) {
+        throw new Error(postData.error);
+      }
+
+      updatePosts(postData.postData);
+      closeModal(false);
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   return (
@@ -82,7 +100,7 @@ export default function PostModal({ closeModal, updatePosts }) {
             onChange={(e) => setImage(e.target.files[0])}
           />
         </ImageArea>
-        <Button onClick={handlePost}>Post</Button>
+        <Button onClick={handlePost}>Add Post</Button>
       </PostArea>
     </Modal>
   );

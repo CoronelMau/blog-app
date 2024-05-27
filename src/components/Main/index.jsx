@@ -23,9 +23,8 @@ export default function MainPage() {
       .then((res) => res.json())
       .then((res) => {
         setPosts(res.finalPosts);
-        console.log(res);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => console.error('Failed to fetch: ', err));
   }, []);
 
   const toggleModal = (state) => {
@@ -33,8 +32,15 @@ export default function MainPage() {
   };
 
   const updatePosts = (newPost) => {
+    const finalNewPost = {
+      id: newPost.id,
+      url: newPost.url,
+      content: newPost.text,
+      comments: [],
+      likes: null,
+    };
     const updatedPosts = [...posts];
-    updatedPosts.unshift(newPost);
+    updatedPosts.unshift(finalNewPost);
     setPosts(updatedPosts);
   };
 

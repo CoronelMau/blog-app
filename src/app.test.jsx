@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 
-import { AppRoutes } from './App';
+import App, { AppRoutes } from './App';
 
 const localStorageMock = (() => {
   let store = {};
@@ -49,5 +49,8 @@ describe('Testing App component', () => {
     );
 
     expect(window.location.pathname).not.toBe('/');
+  });
+  it('Rendering app component', () => {
+    render(<App />);
   });
 });
