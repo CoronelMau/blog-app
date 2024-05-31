@@ -1,6 +1,5 @@
 import { render, screen, fireEvent } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
-import SocketMock from 'socket.io-mock';
 
 import Posts from '.';
 
