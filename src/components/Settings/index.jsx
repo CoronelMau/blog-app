@@ -111,7 +111,7 @@ export default function Settings() {
             placeholder="Username"
             onChange={(e) => setUsername(e.target.value)}
           />
-          <Button onClick={updateUsername}>Submit</Button>
+          <Button onClick={updateUsername}>Change Name</Button>
         </Form>
         <Form>
           <Title>Change Password</Title>
@@ -130,12 +130,12 @@ export default function Settings() {
             type="password"
             onChange={(e) => setRepeatPassword(e.target.value)}
           />
-          <Button onClick={updatePassword}>Submit</Button>
+          <Button onClick={updatePassword}>Change Password</Button>
         </Form>
         <Form>
           <Title>Change Profile Picture</Title>
           <Input type="file" onChange={(e) => setImage(e.target.files[0])} />
-          <Button onClick={updateImage}>Submit</Button>
+          <Button onClick={updateImage}>Change Profile Image</Button>
         </Form>
       </SettingsSection>
     </SettingsPage>
