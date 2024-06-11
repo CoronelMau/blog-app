@@ -1,9 +1,10 @@
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
 
 import PostModal from '.';
+import store from '../../redux/store';
 
-const closeModalMock = jest.fn();
 const updatePostsMock = jest.fn();
 
 window.setImmediate = (fn) => setTimeout(fn, 0);
@@ -36,9 +37,11 @@ describe('Post Modal tests', () => {
 
   it('rendering elements', () => {
     render(
-      <BrowserRouter>
-        <PostModal />
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <PostModal />
+        </BrowserRouter>
+      </Provider>
     );
 
     const modalTitle = screen.getByRole('heading', { name: 'New Post' });
@@ -55,18 +58,17 @@ describe('Post Modal tests', () => {
 
   it('Close modal when press X', () => {
     render(
-      <BrowserRouter>
-        <PostModal closeModal={closeModalMock} updatePosts={updatePostsMock} />
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <PostModal updatePosts={updatePostsMock} />
+        </BrowserRouter>
+      </Provider>
     );
 
     const closeButton = screen.getByText(/x/i);
     expect(closeButton).toBeInTheDocument();
 
     fireEvent.click(closeButton);
-
-    expect(closeModalMock).toHaveBeenCalledWith(false);
-    expect(closeModalMock).toHaveBeenCalledTimes(1);
   });
 
   it('updates posts correctly when a new post is added', async () => {
@@ -93,9 +95,11 @@ describe('Post Modal tests', () => {
     );
 
     render(
-      <BrowserRouter>
-        <PostModal closeModal={closeModalMock} updatePosts={updatePostsMock} />
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <PostModal updatePosts={updatePostsMock} />
+        </BrowserRouter>
+      </Provider>
     );
 
     const newPostContent = 'new post content';
@@ -141,9 +145,11 @@ describe('Post Modal tests', () => {
 
   it('handles post submission without an image correctly', async () => {
     render(
-      <BrowserRouter>
-        <PostModal closeModal={closeModalMock} updatePosts={updatePostsMock} />
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <PostModal updatePosts={updatePostsMock} />
+        </BrowserRouter>
+      </Provider>
     );
 
     const newPostContent = 'new post content';

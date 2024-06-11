@@ -1,7 +1,9 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
+import { Provider } from 'react-redux';
 
 import SearchProfiles from '.';
+import store from '../../redux/store';
 
 window.fetch = jest.fn();
 
@@ -40,11 +42,13 @@ describe('SearchProfiles Component', () => {
 
   it('renders SearchProfiles component and fetches profiles', async () => {
     render(
-      <MemoryRouter initialEntries={['/search/userquery']}>
-        <Routes>
-          <Route path="/search/:query" element={<SearchProfiles />} />
-        </Routes>
-      </MemoryRouter>
+      <Provider store={store}>
+        <MemoryRouter initialEntries={['/search/userquery']}>
+          <Routes>
+            <Route path="/search/:query" element={<SearchProfiles />} />
+          </Routes>
+        </MemoryRouter>
+      </Provider>
     );
 
     await waitFor(() => {
@@ -63,11 +67,13 @@ describe('SearchProfiles Component', () => {
 
   it('handles follow button click', async () => {
     render(
-      <MemoryRouter initialEntries={['/search/userquery']}>
-        <Routes>
-          <Route path="/search/:query" element={<SearchProfiles />} />
-        </Routes>
-      </MemoryRouter>
+      <Provider store={store}>
+        <MemoryRouter initialEntries={['/search/userquery']}>
+          <Routes>
+            <Route path="/search/:query" element={<SearchProfiles />} />
+          </Routes>
+        </MemoryRouter>
+      </Provider>
     );
 
     await waitFor(() => {
@@ -91,12 +97,14 @@ describe('SearchProfiles Component', () => {
 
   it('Clicking on the profile redirects to it', async () => {
     render(
-      <MemoryRouter initialEntries={['/search/userquery']}>
-        <Routes>
-          <Route path="/search/:query" element={<SearchProfiles />} />
-          <Route path="/profile/2" element={<div>Profile 2 Page</div>} />
-        </Routes>
-      </MemoryRouter>
+      <Provider store={store}>
+        <MemoryRouter initialEntries={['/search/userquery']}>
+          <Routes>
+            <Route path="/search/:query" element={<SearchProfiles />} />
+            <Route path="/profile/2" element={<div>Profile 2 Page</div>} />
+          </Routes>
+        </MemoryRouter>
+      </Provider>
     );
 
     await waitFor(() => {

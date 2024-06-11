@@ -1,6 +1,9 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
+
 import Header from '.';
+import store from '../../redux/store';
+import { Provider } from 'react-redux';
 
 jest.mock('react-router-dom', () => ({
   ...jest.requireActual('react-router-dom'),
@@ -19,9 +22,11 @@ describe('Header', () => {
     });
 
     render(
-      <BrowserRouter>
-        <Header />
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Header />
+        </BrowserRouter>
+      </Provider>
     );
 
     const title = screen.getByText(/hello/i);
@@ -43,9 +48,11 @@ describe('Header', () => {
     });
 
     render(
-      <BrowserRouter>
-        <Header />
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Header />
+        </BrowserRouter>
+      </Provider>
     );
 
     fireEvent.keyUp(screen.getByPlaceholderText('Search'), {
@@ -66,9 +73,11 @@ describe('Header', () => {
       .mockRejectedValueOnce(new Error('Failed to fetch'));
 
     render(
-      <BrowserRouter>
-        <Header />
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Header />
+        </BrowserRouter>
+      </Provider>
     );
 
     await screen.findByPlaceholderText(/search/i);
@@ -87,9 +96,11 @@ describe('Header', () => {
     });
 
     render(
-      <BrowserRouter>
-        <Header />
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Header />
+        </BrowserRouter>
+      </Provider>
     );
 
     const title = screen.getByText(/hello/i);
@@ -105,9 +116,11 @@ describe('Header', () => {
     });
 
     render(
-      <BrowserRouter>
-        <Header />
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Header />
+        </BrowserRouter>
+      </Provider>
     );
 
     const profileImg = screen.getByRole('img');

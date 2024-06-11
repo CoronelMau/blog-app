@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">94.44% </span>
+                <span class="strong">95.45% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>17/18</span>
+                <span class='fraction'>21/22</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">87.5% </span>
+                <span class="strong">90% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>7/8</span>
+                <span class='fraction'>9/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">94.44% </span>
+                <span class="strong">95% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>17/18</span>
+                <span class='fraction'>19/20</span>
             </div>
         
             
@@ -125,7 +125,9 @@
 <a name='L60'></a><a href='#L60'>60</a>
 <a name='L61'></a><a href='#L61'>61</a>
 <a name='L62'></a><a href='#L62'>62</a>
-<a name='L63'></a><a href='#L63'>63</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -133,32 +135,35 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">16x</span>
-<span class="cline-any cline-yes">14x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">14x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-yes">27x</span>
+<span class="cline-any cline-yes">27x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">14x</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -169,9 +174,10 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -185,18 +191,21 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { useState, useEffect } from 'react';
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 &nbsp;
 import Header from '../Header';
 import Posts from '../Post';
 import { MainSection, PostingSection, PostingInput } from '../../styles/Main';
 import PostModal from '../PostModal';
 &nbsp;
+import { changeModal } from '../../redux/modalSlice';
+import { setPosts } from '../../redux/postsSlice';
+&nbsp;
 export default function MainPage() {
-  const [modal, setModal] = useState(false);
-  const [posts, setPosts] = useState([]);
+  const dispatch = useDispatch();
+  const modal = useSelector((state) =&gt; state.modal);
+  const posts = useSelector((state) =&gt; state.posts);
 &nbsp;
   useEffect(() =&gt; {
     const jwt = JSON.parse(localStorage.getItem('token'));
@@ -210,14 +219,12 @@ export default function MainPage() {
 &nbsp;
     fetch('http://localhost:8000/user/follow-posts', config)
       .then((res) =&gt; res.json())
-      .then((res) =&gt; {
-        setPosts(res.finalPosts);
-      })
+      .then((res) =&gt; dispatch(setPosts(res.finalPosts)))
       .catch(<span class="fstat-no" title="function not covered" >(e</span>rr) =&gt; <span class="cstat-no" title="statement not covered" >console.error('Failed to fetch: ', err))</span>;
   }, []);
 &nbsp;
   const toggleModal = (state) =&gt; {
-    setModal(state);
+    dispatch(changeModal(state));
   };
 &nbsp;
   const updatePosts = (newPost) =&gt; {
@@ -228,9 +235,10 @@ export default function MainPage() {
       comments: [],
       likes: null,
     };
-    const updatedPosts = [...posts];
+    console.log(posts);
+    const updatedPosts = [...posts.posts];
     updatedPosts.unshift(finalNewPost);
-    setPosts(updatedPosts);
+    dispatch(setPosts(updatedPosts));
   };
 &nbsp;
   return (
@@ -242,10 +250,8 @@ export default function MainPage() {
           onClick={() =&gt; toggleModal(true)}
         &gt;&lt;/PostingInput&gt;
       &lt;/PostingSection&gt;
-      &lt;Posts sendData={posts} /&gt;
-      {modal &amp;&amp; (
-        &lt;PostModal closeModal={toggleModal} updatePosts={updatePosts} /&gt;
-      )}
+      &lt;Posts sendData={posts.posts} /&gt;
+      {modal.openModal &amp;&amp; &lt;PostModal updatePosts={updatePosts} /&gt;}
     &lt;/MainSection&gt;
   );
 }
@@ -256,7 +262,7 @@ export default function MainPage() {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-06-04T03:06:43.047Z
+                at 2024-06-11T17:30:44.898Z
             </div>
         <script src="../../../prettify.js"></script>
         <script>

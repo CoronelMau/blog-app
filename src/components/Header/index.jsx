@@ -1,7 +1,10 @@
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Menu from '../Menu';
+import { addUser } from '../../redux/userSlice';
+import { changeMenu } from '../../redux/menuSlice';
 
 import {
   HeaderContainer,
@@ -12,10 +15,10 @@ import {
 } from '../../styles/Header';
 
 export default function Header() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  const [openMenu, setOpenMenu] = useState(false);
-  const [user, setUser] = useState({});
+  const user = useSelector((state) => state.user);
+  const menu = useSelector((state) => state.menu);
 
   useEffect(() => {
     const jwt = JSON.parse(localStorage.getItem('token'));
@@ -31,8 +34,7 @@ export default function Header() {
     fetch('http://localhost:8000/user/user-data', config)
       .then((res) => res.json())
       .then((res) => {
-        console.log(res);
-        setUser(res);
+        dispatch(addUser(res));
       })
       .catch((err) => console.error(err));
   }, []);
@@ -49,13 +51,12 @@ export default function Header() {
       <HeaderContainer>
         <Title onClick={() => navigate('/main')}>Hello</Title>
         <Input placeholder="Search" onKeyUp={handleSearch} />
-
         <ProfileImg
           src={user.url ? user.url : '../../../user.png'}
-          onClick={() => setOpenMenu(!openMenu)}
+          onClick={() => dispatch(changeMenu(!menu.openMenu))}
         />
       </HeaderContainer>
-      {openMenu && <Menu userId={user.id} />}
+      {menu.openMenu && <Menu userId={user.id} />}
     </HeaderSection>
   );
 }

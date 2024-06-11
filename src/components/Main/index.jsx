@@ -1,13 +1,18 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 
 import Header from '../Header';
 import Posts from '../Post';
 import { MainSection, PostingSection, PostingInput } from '../../styles/Main';
 import PostModal from '../PostModal';
 
+import { changeModal } from '../../redux/modalSlice';
+import { setPosts } from '../../redux/postsSlice';
+
 export default function MainPage() {
-  const [modal, setModal] = useState(false);
-  const [posts, setPosts] = useState([]);
+  const dispatch = useDispatch();
+  const modal = useSelector((state) => state.modal);
+  const posts = useSelector((state) => state.posts);
 
   useEffect(() => {
     const jwt = JSON.parse(localStorage.getItem('token'));
@@ -21,14 +26,12 @@ export default function MainPage() {
 
     fetch('http://localhost:8000/user/follow-posts', config)
       .then((res) => res.json())
-      .then((res) => {
-        setPosts(res.finalPosts);
-      })
+      .then((res) => dispatch(setPosts(res.finalPosts)))
       .catch((err) => console.error('Failed to fetch: ', err));
   }, []);
 
   const toggleModal = (state) => {
-    setModal(state);
+    dispatch(changeModal(state));
   };
 
   const updatePosts = (newPost) => {
@@ -39,9 +42,10 @@ export default function MainPage() {
       comments: [],
       likes: null,
     };
-    const updatedPosts = [...posts];
+    console.log(posts);
+    const updatedPosts = [...posts.posts];
     updatedPosts.unshift(finalNewPost);
-    setPosts(updatedPosts);
+    dispatch(setPosts(updatedPosts));
   };
 
   return (
@@ -53,10 +57,8 @@ export default function MainPage() {
           onClick={() => toggleModal(true)}
         ></PostingInput>
       </PostingSection>
-      <Posts sendData={posts} />
-      {modal && (
-        <PostModal closeModal={toggleModal} updatePosts={updatePosts} />
-      )}
+      <Posts sendData={posts.posts} />
+      {modal.openModal && <PostModal updatePosts={updatePosts} />}
     </MainSection>
   );
 }

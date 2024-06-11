@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.66% </span>
+                <span class="strong">70% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>12/18</span>
+                <span class='fraction'>14/20</span>
             </div>
         
             
@@ -37,9 +37,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">60% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>4/8</span>
+                <span class='fraction'>6/10</span>
             </div>
         
             
@@ -124,7 +124,8 @@
 <a name='L59'></a><a href='#L59'>59</a>
 <a name='L60'></a><a href='#L60'>60</a>
 <a name='L61'></a><a href='#L61'>61</a>
-<a name='L62'></a><a href='#L62'>62</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -138,12 +139,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
@@ -157,24 +161,22 @@
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -186,9 +188,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 &nbsp;
 import Menu from '../Menu';
+import { addUser } from '../../redux/userSlice';
+import { changeMenu } from '../../redux/menuSlice';
 &nbsp;
 import {
   HeaderContainer,
@@ -199,10 +204,10 @@ import {
 } from '../../styles/Header';
 &nbsp;
 export default function Header() {
+  const dispatch = useDispatch();
   const navigate = useNavigate();
-&nbsp;
-  const [openMenu, setOpenMenu] = useState(false);
-  const [user, setUser] = useState({});
+  const user = useSelector((state) =&gt; state.user);
+  const menu = useSelector((state) =&gt; state.menu);
 &nbsp;
   useEffect(() =&gt; {
     const jwt = JSON.parse(localStorage.getItem('token'));
@@ -218,8 +223,7 @@ export default function Header() {
     fetch('http://localhost:8000/user/user-data', config)
       .then((res) =&gt; res.json())
       .then((res) =&gt; {
-        console.log(res);
-        setUser(res);
+        dispatch(addUser(res));
       })
       .catch(<span class="fstat-no" title="function not covered" >(e</span>rr) =&gt; <span class="cstat-no" title="statement not covered" >console.error(err))</span>;
   }, []);
@@ -236,13 +240,12 @@ export default function Header() {
       &lt;HeaderContainer&gt;
         &lt;Title onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >navigate('/main')}</span>&gt;Hello&lt;/Title&gt;
         &lt;Input placeholder="Search" onKeyUp={handleSearch} /&gt;
-&nbsp;
         &lt;ProfileImg
           src={user.url ? <span class="branch-0 cbranch-no" title="branch not covered" >user.url </span>: '../../../user.png'}
-          onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >setOpenMenu(!openMenu)}</span>
+          onClick={<span class="fstat-no" title="function not covered" >()</span> =&gt; <span class="cstat-no" title="statement not covered" >dispatch(changeMenu(!menu.openMenu))}</span>
         /&gt;
       &lt;/HeaderContainer&gt;
-      {openMenu &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >&lt;Menu userId={user.id} /&gt;}</span>
+      {menu.openMenu &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >&lt;Menu userId={user.id} /&gt;}</span>
     &lt;/HeaderSection&gt;
   );
 }
@@ -253,7 +256,7 @@ export default function Header() {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-06-04T03:05:43.913Z
+                at 2024-06-11T17:27:53.389Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
