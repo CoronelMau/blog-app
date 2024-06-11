@@ -1,7 +1,9 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
+import { Provider } from 'react-redux';
 
 import Profile from '.';
+import store from '../../redux/store';
 
 const mockUser = {
   username: 'testuser',
@@ -43,11 +45,13 @@ describe('Profile component test', () => {
 
   test.only('renders profile page with user data and posts', async () => {
     render(
-      <MemoryRouter initialEntries={['/profile/1']}>
-        <Routes>
-          <Route path="/profile/:id" element={<Profile />} />
-        </Routes>
-      </MemoryRouter>
+      <Provider store={store}>
+        <MemoryRouter initialEntries={['/profile/1']}>
+          <Routes>
+            <Route path="/profile/:id" element={<Profile />} />
+          </Routes>
+        </MemoryRouter>
+      </Provider>
     );
 
     await waitFor(() => {

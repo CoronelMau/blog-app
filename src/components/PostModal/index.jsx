@@ -1,4 +1,7 @@
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+
+import { changeModal } from '../../redux/modalSlice';
 
 import {
   Button,
@@ -13,8 +16,8 @@ import {
   Title,
 } from '../../styles/PostModal';
 
-//testing
-export default function PostModal({ closeModal, updatePosts }) {
+export default function PostModal({ updatePosts }) {
+  const dispatch = useDispatch();
   const [post, setPost] = useState('');
   const [image, setImage] = useState(null);
 
@@ -70,7 +73,7 @@ export default function PostModal({ closeModal, updatePosts }) {
       }
 
       updatePosts(postData.postData);
-      closeModal(false);
+      dispatch(changeModal(false));
     } catch (err) {
       console.error(err);
     }
@@ -81,7 +84,9 @@ export default function PostModal({ closeModal, updatePosts }) {
       <PostArea>
         <ModalHeader>
           <Title>New Post</Title>
-          <CloseModal onClick={() => closeModal(false)}>X</CloseModal>
+          <CloseModal onClick={() => dispatch(changeModal(false))}>
+            X
+          </CloseModal>
         </ModalHeader>
         <TextArea
           placeholder="New Post"
@@ -89,9 +94,6 @@ export default function PostModal({ closeModal, updatePosts }) {
             setPost(e.target.value);
           }}
           autoFocus
-          onKeyUp={(e) => {
-            e.keyCode === 27 && closeModal(false);
-          }}
         />
         <ImageArea>
           <ImageTitle>Image: </ImageTitle>

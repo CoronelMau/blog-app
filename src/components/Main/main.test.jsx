@@ -1,3 +1,5 @@
+import { Provider } from 'react-redux';
+
 import {
   render,
   waitFor,
@@ -7,6 +9,7 @@ import {
 } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
 import MainPage from '.';
+import store from '../../redux/store';
 
 window.setImmediate = (fn) => setTimeout(fn, 0);
 
@@ -62,9 +65,11 @@ describe('MainPage component', () => {
   it('renders Header and PostingInput correctly', async () => {
     await act(async () => {
       render(
-        <BrowserRouter>
-          <MainPage />
-        </BrowserRouter>
+        <Provider store={store}>
+          <BrowserRouter>
+            <MainPage />
+          </BrowserRouter>
+        </Provider>
       );
     });
 
@@ -80,9 +85,11 @@ describe('MainPage component', () => {
   it('shows modal when the post input is pressed', async () => {
     await act(async () => {
       render(
-        <BrowserRouter>
-          <MainPage />
-        </BrowserRouter>
+        <Provider store={store}>
+          <BrowserRouter>
+            <MainPage />
+          </BrowserRouter>
+        </Provider>
       );
     });
 
@@ -96,9 +103,11 @@ describe('MainPage component', () => {
   it('updates posts correctly when a new post is added', async () => {
     await act(async () => {
       render(
-        <BrowserRouter>
-          <MainPage />
-        </BrowserRouter>
+        <Provider store={store}>
+          <BrowserRouter>
+            <MainPage />
+          </BrowserRouter>
+        </Provider>
       );
     });
 
@@ -124,9 +133,11 @@ describe('MainPage component', () => {
   it('handles post submission without an image correctly', async () => {
     await act(async () => {
       render(
-        <BrowserRouter>
-          <MainPage />
-        </BrowserRouter>
+        <Provider store={store}>
+          <BrowserRouter>
+            <MainPage />
+          </BrowserRouter>
+        </Provider>
       );
     });
 

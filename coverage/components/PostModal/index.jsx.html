@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">90.32% </span>
+                <span class="strong">93.54% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>28/31</span>
+                <span class='fraction'>29/31</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">66.66% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>4/8</span>
+                <span class='fraction'>4/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">83.33% </span>
+                <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>5/6</span>
+                <span class='fraction'>5/5</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">90.32% </span>
+                <span class="strong">93.54% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>28/31</span>
+                <span class='fraction'>29/31</span>
             </div>
         
             
@@ -170,7 +170,9 @@
 <a name='L105'></a><a href='#L105'>105</a>
 <a name='L106'></a><a href='#L106'>106</a>
 <a name='L107'></a><a href='#L107'>107</a>
-<a name='L108'></a><a href='#L108'>108</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L108'></a><a href='#L108'>108</a>
+<a name='L109'></a><a href='#L109'>109</a>
+<a name='L110'></a><a href='#L110'>110</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -187,6 +189,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -258,11 +263,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -278,6 +282,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { useState } from 'react';
+import { useDispatch } from 'react-redux';
+&nbsp;
+import { changeModal } from '../../redux/modalSlice';
 &nbsp;
 import {
   Button,
@@ -292,8 +299,8 @@ import {
   Title,
 } from '../../styles/PostModal';
 &nbsp;
-//testing
-export default function PostModal({ closeModal, updatePosts }) {
+export default function PostModal({ updatePosts }) {
+  const dispatch = useDispatch();
   const [post, setPost] = useState('');
   const [image, setImage] = useState(null);
 &nbsp;
@@ -349,7 +356,7 @@ export default function PostModal({ closeModal, updatePosts }) {
       }
 &nbsp;
       updatePosts(postData.postData);
-      closeModal(false);
+      dispatch(changeModal(false));
     } catch (err) {
       console.error(err);
     }
@@ -360,7 +367,9 @@ export default function PostModal({ closeModal, updatePosts }) {
       &lt;PostArea&gt;
         &lt;ModalHeader&gt;
           &lt;Title&gt;New Post&lt;/Title&gt;
-          &lt;CloseModal onClick={() =&gt; closeModal(false)}&gt;X&lt;/CloseModal&gt;
+          &lt;CloseModal onClick={() =&gt; dispatch(changeModal(false))}&gt;
+            X
+          &lt;/CloseModal&gt;
         &lt;/ModalHeader&gt;
         &lt;TextArea
           placeholder="New Post"
@@ -368,9 +377,6 @@ export default function PostModal({ closeModal, updatePosts }) {
             setPost(e.target.value);
           }}
           autoFocus
-          onKeyUp={<span class="fstat-no" title="function not covered" >(e</span>) =&gt; {
-<span class="cstat-no" title="statement not covered" >            e.keyCode === 27 &amp;&amp; closeModal(false);</span>
-          }}
         /&gt;
         &lt;ImageArea&gt;
           &lt;ImageTitle&gt;Image: &lt;/ImageTitle&gt;
@@ -391,7 +397,7 @@ export default function PostModal({ closeModal, updatePosts }) {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2024-05-31T19:11:31.059Z
+                at 2024-06-11T17:23:34.995Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

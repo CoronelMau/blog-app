@@ -1,7 +1,9 @@
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
 
 import Settings from '.';
+import store from '../../redux/store';
 
 window.fetch = jest.fn();
 
@@ -45,9 +47,11 @@ describe('Settings Component', () => {
 
   it('renders Settings component correctly', () => {
     render(
-      <BrowserRouter>
-        <Settings />
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Settings />
+        </BrowserRouter>
+      </Provider>
     );
 
     expect(screen.getByText('Settings')).toBeInTheDocument();
@@ -58,9 +62,11 @@ describe('Settings Component', () => {
 
   it('updates username', async () => {
     render(
-      <BrowserRouter>
-        <Settings />
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Settings />
+        </BrowserRouter>
+      </Provider>
     );
 
     fireEvent.change(screen.getByPlaceholderText('Username'), {
@@ -81,9 +87,11 @@ describe('Settings Component', () => {
 
   it('updates password', async () => {
     render(
-      <BrowserRouter>
-        <Settings />
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Settings />
+        </BrowserRouter>
+      </Provider>
     );
 
     fireEvent.change(screen.getByPlaceholderText('Current Password'), {
@@ -113,9 +121,11 @@ describe('Settings Component', () => {
 
   it('updates profile image', async () => {
     render(
-      <BrowserRouter>
-        <Settings />
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <Settings />
+        </BrowserRouter>
+      </Provider>
     );
 
     const file = new File(['dummy content'], 'example.png', {
