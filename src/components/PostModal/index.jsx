@@ -30,11 +30,11 @@ export default function PostModal({ updatePosts }) {
       if (image) {
         const formData = new FormData();
         formData.append('file', image);
-        formData.append('upload_preset', 'iuccxiw3');
-        formData.append('api_key', '862423219721751');
+        formData.append('upload_preset', 'upload_preset');
+        formData.append('api_key', 'api_key');
 
         const cloudinaryRes = await fetch(
-          'https://api.cloudinary.com/v1_1/dihivxkel/image/upload',
+          'https://api.cloudinary.com/v1_1/{root}/image/upload',
           {
             method: 'POST',
             body: formData,
